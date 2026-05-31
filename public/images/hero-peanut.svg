@@ -1,24 +1,171 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <radialGradient id="g" cx="35%" cy="35%" r="75%">
-      <stop offset="0%" stop-color="#f2bf52"/>
-      <stop offset="55%" stop-color="#c4881c"/>
-      <stop offset="100%" stop-color="#4a2e10"/>
-    </radialGradient>
-    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+    <!-- Background -->
+    <radialGradient id="bgGrad" cx="35%" cy="30%" r="85%">
       <stop offset="0%" stop-color="#3b6a48"/>
+      <stop offset="55%" stop-color="#1a3d2b"/>
+      <stop offset="100%" stop-color="#0a1e14"/>
+    </radialGradient>
+
+    <!-- Shell base -->
+    <radialGradient id="shell" cx="32%" cy="28%" r="78%">
+      <stop offset="0%" stop-color="#fde2a0"/>
+      <stop offset="22%" stop-color="#f2bf52"/>
+      <stop offset="55%" stop-color="#c4881c"/>
+      <stop offset="82%" stop-color="#7a4a14"/>
+      <stop offset="100%" stop-color="#3a230d"/>
+    </radialGradient>
+
+    <radialGradient id="shellHi" cx="30%" cy="22%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Subtle shell ridge stroke -->
+    <linearGradient id="ridge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4a2e10" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#4a2e10" stop-opacity="0.15"/>
+    </linearGradient>
+
+    <!-- Leaf -->
+    <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5e9e6f"/>
       <stop offset="100%" stop-color="#1a3d2b"/>
     </linearGradient>
+
+    <!-- Noise / grain -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="3"/>
+      <feColorMatrix values="0 0 0 0 0.4  0 0 0 0 0.25  0 0 0 0 0.1  0 0 0 0.32 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="0" dy="22" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.55"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <filter id="innerShade">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+
+    <!-- Peanut symbol: two pods (figure-8 outline) -->
+    <symbol id="peanut" viewBox="-160 -240 320 480">
+      <g filter="url(#softShadow)">
+        <!-- Outer pod shape -->
+        <path d="
+          M 0 -220
+          C 110 -220, 145 -150, 130 -85
+          C 120 -40, 95 -20, 85 5
+          C 80 25, 90 50, 110 80
+          C 135 120, 140 180, 95 215
+          C 50 245, -50 245, -95 215
+          C -140 180, -135 120, -110 80
+          C -90 50, -80 25, -85 5
+          C -95 -20, -120 -40, -130 -85
+          C -145 -150, -110 -220, 0 -220 Z"
+          fill="url(#shell)" stroke="#3a230d" stroke-width="2.5"/>
+
+        <!-- Top highlight -->
+        <path d="
+          M 0 -220
+          C 110 -220, 145 -150, 130 -85
+          C 120 -40, 95 -20, 85 5
+          C 80 25, 90 50, 110 80
+          C 135 120, 140 180, 95 215
+          C 50 245, -50 245, -95 215
+          C -140 180, -135 120, -110 80
+          C -90 50, -80 25, -85 5
+          C -95 -20, -120 -40, -130 -85
+          C -145 -150, -110 -220, 0 -220 Z"
+          fill="url(#shellHi)"/>
+
+        <!-- Pinch / waist shading -->
+        <path d="M -85 5 C -55 -5, 55 -5, 85 5 C 78 18, -78 18, -85 5 Z"
+          fill="#3a230d" opacity="0.35" filter="url(#innerShade)"/>
+
+        <!-- Shell ridges (texture) -->
+        <g stroke="url(#ridge)" stroke-width="1.3" fill="none" opacity="0.7">
+          <path d="M -118 -150 Q -100 -100 -90 -40"/>
+          <path d="M -95 -195 Q -85 -130 -75 -55"/>
+          <path d="M -60 -210 Q -55 -120 -50 -25"/>
+          <path d="M -25 -215 Q -22 -100 -18 -10"/>
+          <path d="M  10 -215 Q  12 -100 16 -10"/>
+          <path d="M  45 -210 Q  48 -120 52 -25"/>
+          <path d="M  80 -195 Q  85 -130 92 -55"/>
+          <path d="M 115 -150 Q 102 -100 92 -40"/>
+
+          <path d="M -125 95 Q -108 140 -85 200"/>
+          <path d="M -100 70 Q -88 140 -65 220"/>
+          <path d="M -65 55 Q -55 145 -40 230"/>
+          <path d="M -30 50 Q -25 145 -15 235"/>
+          <path d="M  10 50 Q  15 145 25 235"/>
+          <path d="M  45 55 Q  55 145 70 230"/>
+          <path d="M  80 70 Q  92 140 110 220"/>
+          <path d="M 105 95 Q 105 140 90 200"/>
+        </g>
+
+        <!-- Cross-hatch dots for shell pebble texture -->
+        <g fill="#3a230d" opacity="0.18">
+          <circle cx="-70" cy="-160" r="2"/><circle cx="-30" cy="-180" r="1.8"/>
+          <circle cx="20" cy="-175" r="2"/><circle cx="65" cy="-155" r="1.6"/>
+          <circle cx="-55" cy="-95" r="2.2"/><circle cx="10" cy="-110" r="1.6"/>
+          <circle cx="55" cy="-100" r="2"/><circle cx="-90" cy="100" r="2"/>
+          <circle cx="-40" cy="140" r="1.8"/><circle cx="0" cy="125" r="2"/>
+          <circle cx="45" cy="145" r="1.8"/><circle cx="85" cy="115" r="2"/>
+          <circle cx="-60" cy="190" r="1.8"/><circle cx="30" cy="200" r="2"/>
+        </g>
+      </g>
+    </symbol>
+
+    <symbol id="leaf" viewBox="-50 -25 100 50">
+      <path d="M -45 0 Q -25 -22 0 -22 Q 25 -22 45 0 Q 25 22 0 22 Q -25 22 -45 0 Z" fill="url(#leafGrad)" stroke="#0f2a1c" stroke-width="1"/>
+      <path d="M -45 0 L 45 0" stroke="#0f2a1c" stroke-width="1" opacity="0.5"/>
+      <g stroke="#0f2a1c" stroke-width="0.6" opacity="0.4">
+        <path d="M -25 -3 Q -20 -10 -18 -16"/>
+        <path d="M -10 -3 Q -7 -12 -5 -19"/>
+        <path d="M  5 -3 Q  8 -12 10 -19"/>
+        <path d="M  22 -3 Q  20 -12 18 -16"/>
+      </g>
+    </symbol>
   </defs>
-  <rect width="800" height="800" fill="url(#g)"/>
-  <g opacity="0.9">
-    <ellipse cx="400" cy="290" rx="170" ry="170" fill="#e8a020" stroke="#4a2e10" stroke-width="3"/>
-    <ellipse cx="400" cy="490" rx="190" ry="190" fill="#e8a020" stroke="#4a2e10" stroke-width="3"/>
-    <path d="M 280 350 Q 400 360 520 350" fill="none" stroke="#4a2e10" stroke-width="4" opacity="0.4"/>
+
+  <!-- Background -->
+  <rect width="800" height="800" fill="url(#bgGrad)"/>
+
+  <!-- Soft floor glow -->
+  <ellipse cx="400" cy="650" rx="320" ry="60" fill="#e8a020" opacity="0.18" filter="url(#innerShade)"/>
+
+  <!-- Background leaves -->
+  <g opacity="0.45">
+    <use href="#leaf" x="120" y="180" width="180" height="90" transform="rotate(-20 120 180)"/>
+    <use href="#leaf" x="560" y="120" width="200" height="100" transform="rotate(25 560 120)"/>
+    <use href="#leaf" x="610" y="630" width="170" height="85" transform="rotate(-40 610 630)"/>
+    <use href="#leaf" x="60" y="600" width="180" height="90" transform="rotate(35 60 600)"/>
   </g>
-  <g transform="translate(540,140) rotate(25)" fill="url(#leaf)">
-    <ellipse cx="0" cy="0" rx="55" ry="22"/>
-    <ellipse cx="55" cy="-10" rx="55" ry="22"/>
+
+  <!-- Background smaller peanut -->
+  <g opacity="0.6">
+    <use href="#peanut" x="540" y="450" width="220" height="320" transform="rotate(18 650 610)"/>
   </g>
-  <text x="400" y="760" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#fdf6ec" opacity="0.55" font-style="italic">AI image placeholder — replace /public/images/hero-peanut.jpg</text>
+  <g opacity="0.55">
+    <use href="#peanut" x="60" y="430" width="190" height="280" transform="rotate(-22 155 570)"/>
+  </g>
+
+  <!-- Foreground hero peanut -->
+  <g>
+    <use href="#peanut" x="240" y="180" width="320" height="480"/>
+  </g>
+
+  <!-- Grain overlay -->
+  <rect width="800" height="800" filter="url(#grain)" opacity="0.55"/>
+
+  <!-- Vignette -->
+  <radialGradient id="vig" cx="50%" cy="50%" r="75%">
+    <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity="0.5"/>
+  </radialGradient>
+  <rect width="800" height="800" fill="url(#vig)"/>
 </svg>

@@ -1,25 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#d4a574"/>
-      <stop offset="100%" stop-color="#8b5a1e"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b6a48"/><stop offset="60%" stop-color="#1a3d2b"/><stop offset="100%" stop-color="#0f2a1c"/>
     </linearGradient>
-    <radialGradient id="nut" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#f2bf52"/>
-      <stop offset="55%" stop-color="#c4881c"/>
-      <stop offset="100%" stop-color="#4a2e10"/>
-    </radialGradient>
+    <radialGradient id="sun" cx="80%" cy="20%" r="60%"><stop offset="0%" stop-color="#e8a020" stop-opacity="0.45"/><stop offset="100%" stop-color="#e8a020" stop-opacity="0"/></radialGradient>
+    <radialGradient id="shell" cx="32%" cy="28%" r="78%"><stop offset="0%" stop-color="#fde2a0"/><stop offset="22%" stop-color="#f2bf52"/><stop offset="55%" stop-color="#c4881c"/><stop offset="82%" stop-color="#7a4a14"/><stop offset="100%" stop-color="#3a230d"/></radialGradient>
+    <radialGradient id="shellHi" cx="30%" cy="22%" r="55%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/><stop offset="55%" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="ridge" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3a230d" stop-opacity="0.6"/><stop offset="100%" stop-color="#3a230d" stop-opacity="0.2"/></linearGradient>
+    <linearGradient id="leafG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8cc28a"/><stop offset="100%" stop-color="#2a5a36"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="2" seed="11"/><feColorMatrix values="0 0 0 0 0.2  0 0 0 0 0.3  0 0 0 0 0.15  0 0 0 0.25 0"/></filter>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceAlpha" stdDeviation="6"/><feOffset dx="0" dy="8"/><feComponentTransfer><feFuncA type="linear" slope="0.55"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <symbol id="pn" viewBox="-160 -240 320 480">
+      <path d="M 0 -220 C 110 -220, 145 -150, 130 -85 C 120 -40, 95 -20, 85 5 C 80 25, 90 50, 110 80 C 135 120, 140 180, 95 215 C 50 245, -50 245, -95 215 C -140 180, -135 120, -110 80 C -90 50, -80 25, -85 5 C -95 -20, -120 -40, -130 -85 C -145 -150, -110 -220, 0 -220 Z" fill="url(#shell)" stroke="#3a230d" stroke-width="3"/>
+      <path d="M 0 -220 C 110 -220, 145 -150, 130 -85 C 120 -40, 95 -20, 85 5 C 80 25, 90 50, 110 80 C 135 120, 140 180, 95 215 C 50 245, -50 245, -95 215 C -140 180, -135 120, -110 80 C -90 50, -80 25, -85 5 C -95 -20, -120 -40, -130 -85 C -145 -150, -110 -220, 0 -220 Z" fill="url(#shellHi)"/>
+      <path d="M -85 5 C -55 -5, 55 -5, 85 5 C 78 18, -78 18, -85 5 Z" fill="#3a230d" opacity="0.35"/>
+      <g stroke="url(#ridge)" stroke-width="1.6" fill="none" opacity="0.7">
+        <path d="M -60 -210 Q -55 -120 -50 -25"/><path d="M -25 -215 Q -22 -100 -18 -10"/>
+        <path d="M  10 -215 Q  12 -100 16 -10"/><path d="M  45 -210 Q  48 -120 52 -25"/>
+        <path d="M -65 55 Q -55 145 -40 230"/><path d="M -30 50 Q -25 145 -15 235"/>
+        <path d="M  10 50 Q  15 145 25 235"/><path d="M  45 55 Q  55 145 70 230"/>
+      </g>
+    </symbol>
+    <symbol id="lf" viewBox="-60 -30 120 60">
+      <path d="M -55 0 Q -30 -28 0 -28 Q 30 -28 55 0 Q 30 28 0 28 Q -30 28 -55 0 Z" fill="url(#leafG)" stroke="#0f2a1c" stroke-width="1.2"/>
+      <path d="M -55 0 L 55 0" stroke="#0f2a1c" stroke-width="0.8" opacity="0.6"/>
+      <g stroke="#0f2a1c" stroke-width="0.5" opacity="0.5" fill="none">
+        <path d="M -35 -3 Q -28 -14 -22 -22"/><path d="M -15 -3 Q -10 -16 -6 -25"/>
+        <path d="M  8 -3 Q  12 -16 16 -25"/><path d="M  30 -3 Q  26 -14 20 -22"/>
+        <path d="M -35 3 Q -28 14 -22 22"/><path d="M -15 3 Q -10 16 -6 25"/>
+        <path d="M  8 3 Q  12 16 16 25"/><path d="M  30 3 Q  26 14 20 22"/>
+      </g>
+    </symbol>
   </defs>
   <rect width="600" height="400" fill="url(#bg)"/>
-  <g opacity="0.92">
-    <ellipse cx="240" cy="170" rx="78" ry="78" fill="url(#nut)" stroke="#3a230d" stroke-width="2"/>
-    <ellipse cx="240" cy="280" rx="86" ry="86" fill="url(#nut)" stroke="#3a230d" stroke-width="2"/>
-    <ellipse cx="380" cy="140" rx="60" ry="60" fill="url(#nut)" stroke="#3a230d" stroke-width="2" opacity="0.85"/>
-    <ellipse cx="395" cy="240" rx="68" ry="68" fill="url(#nut)" stroke="#3a230d" stroke-width="2" opacity="0.85"/>
-    <ellipse cx="420" cy="320" rx="50" ry="50" fill="url(#nut)" stroke="#3a230d" stroke-width="2" opacity="0.75"/>
+  <rect width="600" height="400" fill="url(#sun)"/>
+  <g opacity="0.35">
+    <use href="#lf" x="20" y="30" width="180" height="90" transform="rotate(-15 110 75)"/>
+    <use href="#lf" x="420" y="80" width="200" height="100" transform="rotate(25 520 130)"/>
+    <use href="#lf" x="450" y="280" width="170" height="85" transform="rotate(-30 535 322)"/>
   </g>
-  <g transform="translate(300,360)">
-    <rect x="-95" y="-22" width="190" height="38" rx="19" fill="#1a3d2b" opacity="0.85"/>
-    <text x="0" y="5" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#e8a020" font-weight="700" letter-spacing="2">TJ-1</text>
+  <path d="M 100 380 Q 180 320 250 280 Q 320 240 380 260 Q 440 280 500 230" stroke="#2a5a36" stroke-width="3" fill="none" opacity="0.7"/>
+  <g opacity="0.85">
+    <use href="#lf" x="40" y="290" width="120" height="60" transform="rotate(20 100 320)"/>
+    <use href="#lf" x="430" y="120" width="130" height="65" transform="rotate(-15 495 152)"/>
   </g>
+  <g filter="url(#shadow)">
+    <use href="#pn" x="90" y="110" width="170" height="250" transform="rotate(-15 175 235)"/>
+    <use href="#pn" x="240" y="80" width="200" height="290" transform="rotate(5 340 225)"/>
+    <use href="#pn" x="380" y="160" width="160" height="230" transform="rotate(25 460 275)"/>
+  </g>
+  <rect width="600" height="400" filter="url(#grain)" opacity="0.4"/>
+  <radialGradient id="vg" cx="50%" cy="50%" r="80%"><stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.5"/></radialGradient>
+  <rect width="600" height="400" fill="url(#vg)"/>
 </svg>

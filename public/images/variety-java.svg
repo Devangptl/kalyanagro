@@ -1,25 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#d4a574"/>
-      <stop offset="100%" stop-color="#8b5a1e"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b58a4d"/><stop offset="100%" stop-color="#6f4a1f"/>
     </linearGradient>
-    <radialGradient id="nut" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#f2bf52"/>
-      <stop offset="55%" stop-color="#c4881c"/>
-      <stop offset="100%" stop-color="#4a2e10"/>
-    </radialGradient>
+    <pattern id="burlap" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#9a6d34"/>
+      <path d="M 0 0 L 8 8 M 0 8 L 8 0" stroke="#7a4f1d" stroke-width="0.6" opacity="0.6"/>
+      <path d="M 4 0 L 4 8 M 0 4 L 8 4" stroke="#bb8a4a" stroke-width="0.4" opacity="0.5"/>
+    </pattern>
+    <radialGradient id="shell" cx="32%" cy="28%" r="78%"><stop offset="0%" stop-color="#fde2a0"/><stop offset="22%" stop-color="#f2bf52"/><stop offset="55%" stop-color="#c4881c"/><stop offset="82%" stop-color="#7a4a14"/><stop offset="100%" stop-color="#3a230d"/></radialGradient>
+    <radialGradient id="shellHi" cx="30%" cy="22%" r="55%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/><stop offset="55%" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="ridge" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3a230d" stop-opacity="0.6"/><stop offset="100%" stop-color="#3a230d" stop-opacity="0.2"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="9"/><feColorMatrix values="0 0 0 0 0.3  0 0 0 0 0.2  0 0 0 0 0.1  0 0 0 0.3 0"/></filter>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="2" dy="7"/><feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <symbol id="pn" viewBox="-160 -240 320 480">
+      <path d="M 0 -220 C 110 -220, 145 -150, 130 -85 C 120 -40, 95 -20, 85 5 C 80 25, 90 50, 110 80 C 135 120, 140 180, 95 215 C 50 245, -50 245, -95 215 C -140 180, -135 120, -110 80 C -90 50, -80 25, -85 5 C -95 -20, -120 -40, -130 -85 C -145 -150, -110 -220, 0 -220 Z" fill="url(#shell)" stroke="#3a230d" stroke-width="3"/>
+      <path d="M 0 -220 C 110 -220, 145 -150, 130 -85 C 120 -40, 95 -20, 85 5 C 80 25, 90 50, 110 80 C 135 120, 140 180, 95 215 C 50 245, -50 245, -95 215 C -140 180, -135 120, -110 80 C -90 50, -80 25, -85 5 C -95 -20, -120 -40, -130 -85 C -145 -150, -110 -220, 0 -220 Z" fill="url(#shellHi)"/>
+      <path d="M -85 5 C -55 -5, 55 -5, 85 5 C 78 18, -78 18, -85 5 Z" fill="#3a230d" opacity="0.35"/>
+      <g stroke="url(#ridge)" stroke-width="1.6" fill="none" opacity="0.7">
+        <path d="M -60 -210 Q -55 -120 -50 -25"/><path d="M -25 -215 Q -22 -100 -18 -10"/>
+        <path d="M  10 -215 Q  12 -100 16 -10"/><path d="M  45 -210 Q  48 -120 52 -25"/>
+        <path d="M -65 55 Q -55 145 -40 230"/><path d="M -30 50 Q -25 145 -15 235"/>
+        <path d="M  10 50 Q  15 145 25 235"/><path d="M  45 55 Q  55 145 70 230"/>
+      </g>
+    </symbol>
   </defs>
   <rect width="600" height="400" fill="url(#bg)"/>
-  <g opacity="0.92">
-    <ellipse cx="240" cy="170" rx="78" ry="78" fill="url(#nut)" stroke="#3a230d" stroke-width="2"/>
-    <ellipse cx="240" cy="280" rx="86" ry="86" fill="url(#nut)" stroke="#3a230d" stroke-width="2"/>
-    <ellipse cx="380" cy="140" rx="60" ry="60" fill="url(#nut)" stroke="#3a230d" stroke-width="2" opacity="0.85"/>
-    <ellipse cx="395" cy="240" rx="68" ry="68" fill="url(#nut)" stroke="#3a230d" stroke-width="2" opacity="0.85"/>
-    <ellipse cx="420" cy="320" rx="50" ry="50" fill="url(#nut)" stroke="#3a230d" stroke-width="2" opacity="0.75"/>
+  <rect width="600" height="400" fill="url(#burlap)" opacity="0.7"/>
+  <path d="M 0 0 Q 150 80 300 30 Q 450 -30 600 60 L 600 0 Z" fill="#5a3a1a" opacity="0.6"/>
+  <path d="M 0 0 Q 150 80 300 30 Q 450 -30 600 60" stroke="#3a230d" stroke-width="2" fill="none" opacity="0.7"/>
+  <g filter="url(#shadow)">
+    <use href="#pn" x="70" y="70" width="150" height="220" transform="rotate(-30 145 180)"/>
+    <use href="#pn" x="180" y="100" width="170" height="250" transform="rotate(15 265 225)"/>
+    <use href="#pn" x="320" y="60" width="180" height="270" transform="rotate(-12 410 195)"/>
+    <use href="#pn" x="420" y="170" width="160" height="240" transform="rotate(35 500 290)"/>
+    <use href="#pn" x="60" y="220" width="160" height="240" transform="rotate(45 140 340)"/>
   </g>
-  <g transform="translate(300,360)">
-    <rect x="-95" y="-22" width="190" height="38" rx="19" fill="#1a3d2b" opacity="0.85"/>
-    <text x="0" y="5" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#e8a020" font-weight="700" letter-spacing="2">JAVA</text>
-  </g>
+  <rect width="600" height="400" filter="url(#grain)" opacity="0.4"/>
+  <radialGradient id="vg" cx="50%" cy="50%" r="80%"><stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.4"/></radialGradient>
+  <rect width="600" height="400" fill="url(#vg)"/>
 </svg>
