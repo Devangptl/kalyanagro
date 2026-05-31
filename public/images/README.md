@@ -1,25 +1,50 @@
-# AI Image Placeholders
+# Image Sources
 
-Drop your AI-generated images into this folder using the filenames below.
-Each `.svg` is a placeholder — replace with the same name `.jpg` or `.png`
-(and update the extension in `app/page.tsx` if needed).
+The site now loads from **Unsplash CDN** by default. If any remote URL
+fails to resolve, the `<img onError>` handlers automatically swap to the
+local SVG fallback shipped in this folder. Both layers are independent —
+you can swap one without touching the other.
 
-## Slots
+## Live Unsplash URLs
 
-| File | Where it appears | Suggested AI prompt |
-|---|---|---|
-| `hero-peanut.svg` | Hero section visual | "Premium roasted groundnut/peanut, studio shot, warm golden lighting, dark green earthy background, hyper-realistic, 1:1" |
-| `about-field.svg` | About section panel | "Indian groundnut farm at golden hour, rows of green plants, farmer silhouette, cinematic, warm tones, 4:5" |
-| `variety-bold.svg` | Bold variety card | "Large bold groundnut seeds spilled on jute cloth, top-down, natural light, premium produce" |
-| `variety-java.svg` | Java variety card | "Java peanut kernels on rustic wooden board, soft sunlight" |
-| `variety-tj-1.svg` | TJ-1 variety card | "TJ-1 groundnut seeds in a hand, dark green leafy background" |
-| `variety-k-6.svg` | K-6 variety card | "K-6 peanut harvest, golden yellow tones, farm setting" |
-| `variety-girnar-2.svg` | Girnar-2 variety card | "Girnar-2 groundnut variety, drought-resistant pods, earthy tones" |
-| `variety-tag-24.svg` | TAG-24 variety card | "Export-grade TAG-24 peanut kernels, premium packaging vibe" |
+Defined in `app/page.tsx`:
 
-## Tips
+| Slot | Unsplash photo ID |
+|---|---|
+| Hero | `photo-1567892737950-30c4db1fd4d2` |
+| About section | `photo-1625246333195-78d9c38ad449` |
+| Bold | `photo-1606914469633-71deb6a83a0a` |
+| Java | `photo-1599909533730-4f3ad11ab8f4` |
+| TJ-1 | `photo-1574323347407-f5e1ad6d020b` |
+| K-6 | `photo-1568051243851-cc6d922f0d7f` |
+| Girnar-2 | `photo-1605522037164-fa72a888fb98` |
+| TAG-24 | `photo-1622957461168-202193e58b73` |
 
-- Keep variety images at **3:2 aspect ratio** (e.g. 1200×800) for best card fit.
-- Hero image works well as a **square (1:1)**, ~1200×1200.
-- About image: **4:5 portrait**, ~1000×1250.
-- Save as `.webp` or `.jpg` for fastest loading.
+### Swap any photo
+
+Open any photo on [unsplash.com](https://unsplash.com), copy the photo ID
+(the `photo-xxxx-yyyy` slug in the URL), then edit `app/page.tsx` and
+replace the ID inside the matching `u("photo-…", 900)` call.
+
+The helper applies sensible defaults: `?w=<width>&q=80&auto=format&fit=crop`.
+
+## Local SVG fallbacks
+
+The hand-crafted SVGs in this folder ship as fallbacks. Names:
+
+```
+hero-peanut.svg
+about-field.svg
+variety-bold.svg
+variety-java.svg
+variety-tj-1.svg
+variety-k-6.svg
+variety-girnar-2.svg
+variety-tag-24.svg
+```
+
+## Going fully offline
+
+If you'd rather not depend on Unsplash, replace the `u("photo-…")` value
+in `app/page.tsx` with a local path like `/images/variety-bold.jpg` and
+drop the file in this folder.
