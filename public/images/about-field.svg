@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a3d2b"/>
+      <stop offset="55%" stop-color="#3b6a48"/>
+      <stop offset="100%" stop-color="#c4881c"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="900" fill="url(#sky)"/>
+  <g opacity="0.85">
+    <path d="M0 650 Q 200 600 400 640 T 800 640 L 800 900 L 0 900 Z" fill="#1a3d2b"/>
+    <path d="M0 720 Q 200 690 400 710 T 800 700 L 800 900 L 0 900 Z" fill="#0f2a1c"/>
+    <g stroke="#e8a020" stroke-width="2" opacity="0.6">
+      <line x1="100" y1="650" x2="120" y2="600"/>
+      <line x1="180" y1="640" x2="200" y2="590"/>
+      <line x1="260" y1="640" x2="280" y2="590"/>
+      <line x1="340" y1="640" x2="360" y2="590"/>
+      <line x1="420" y1="640" x2="440" y2="590"/>
+      <line x1="500" y1="640" x2="520" y2="590"/>
+      <line x1="580" y1="640" x2="600" y2="590"/>
+      <line x1="660" y1="640" x2="680" y2="590"/>
+    </g>
+    <circle cx="640" cy="180" r="60" fill="#fdf6ec" opacity="0.85"/>
+    <circle cx="640" cy="180" r="80" fill="#fdf6ec" opacity="0.18"/>
+  </g>
+  <text x="400" y="860" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#fdf6ec" opacity="0.55" font-style="italic">AI image — replace /public/images/about-field.jpg</text>
+</svg>

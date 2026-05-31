@@ -35,6 +35,7 @@ const varieties = [
     availability: "In Stock",
     rating: 5,
     category: "high-yield",
+    image: "/images/variety-bold.svg",
   },
   {
     name: "Java",
@@ -43,6 +44,7 @@ const varieties = [
     availability: "In Stock",
     rating: 5,
     category: "export",
+    image: "/images/variety-java.svg",
   },
   {
     name: "TJ-1",
@@ -51,6 +53,7 @@ const varieties = [
     availability: "Limited",
     rating: 4,
     category: "disease-resistant",
+    image: "/images/variety-tj-1.svg",
   },
   {
     name: "K-6",
@@ -59,6 +62,7 @@ const varieties = [
     availability: "In Stock",
     rating: 5,
     category: "high-yield",
+    image: "/images/variety-k-6.svg",
   },
   {
     name: "Girnar-2",
@@ -67,6 +71,7 @@ const varieties = [
     availability: "In Stock",
     rating: 4,
     category: "disease-resistant",
+    image: "/images/variety-girnar-2.svg",
   },
   {
     name: "TAG-24",
@@ -75,6 +80,7 @@ const varieties = [
     availability: "Limited",
     rating: 5,
     category: "export",
+    image: "/images/variety-tag-24.svg",
   },
 ];
 
@@ -211,7 +217,14 @@ export default function Home() {
 
           <div className="hero-visual reveal">
             <div className="hero-circle"></div>
-            <div className="hero-orb"></div>
+            <div className="hero-image-frame">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/hero-peanut.svg"
+                alt="Premium groundnut seeds — Kalyan Agro"
+                className="hero-image"
+              />
+            </div>
             <div className="floating-card fc1">
               <span className="dot"></span>
               Verified Quality
@@ -353,7 +366,8 @@ export default function Home() {
                   >
                     {v.availability}
                   </span>
-                  <div className="peanut-shape"></div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={v.image} alt={`${v.name} groundnut variety`} />
                 </div>
                 <div className="variety-body">
                   <div className="variety-tag">{v.tag}</div>
@@ -598,6 +612,13 @@ export default function Home() {
         <div className="container">
           <div className="about-grid">
             <div className="about-visual reveal">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/about-field.svg"
+                alt="Kalyan Agro groundnut field"
+                className="about-bg-image"
+              />
+              <div className="about-overlay"></div>
               <div className="about-stamp">
                 <div className="about-stamp-inner">
                   EST.<br />
@@ -694,9 +715,9 @@ export default function Home() {
             <div className="contact-icon"><MapIcon /></div>
             <h4>Head Office</h4>
             <p>
-              Kalyan Agro Trading Co., Plot 24, Agro Market Road,
+              145, Near Chandrapura Chowkdi, Village Takhatgadh,
               <br />
-              Junagadh, Gujarat 362001, India
+              Himatnagar – Dhansura Road, Prantij – 383205, Gujarat, India
             </p>
           </div>
         </div>
