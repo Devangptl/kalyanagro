@@ -31,9 +31,6 @@ const UNSPLASH = "https://images.unsplash.com";
 const u = (id: string, w = 1200) =>
   `${UNSPLASH}/${id}?w=${w}&q=80&auto=format&fit=crop`;
 
-// Curated Unsplash photos — groundnut / peanut / Indian agriculture.
-// Each `<img>` falls back to the local SVG (set on onError) if a remote
-// URL fails to resolve.
 const HERO_IMAGE = u("photo-1567892737950-30c4db1fd4d2", 1400);
 const ABOUT_IMAGE = u("photo-1625246333195-78d9c38ad449", 1400);
 
@@ -46,7 +43,6 @@ const varieties = [
     rating: 5,
     category: "high-yield",
     image: u("photo-1606914469633-71deb6a83a0a", 900),
-    fallback: "/images/variety-bold.svg",
   },
   {
     name: "Java",
@@ -56,7 +52,6 @@ const varieties = [
     rating: 5,
     category: "export",
     image: u("photo-1599909533730-4f3ad11ab8f4", 900),
-    fallback: "/images/variety-java.svg",
   },
   {
     name: "TJ-1",
@@ -66,7 +61,6 @@ const varieties = [
     rating: 4,
     category: "disease-resistant",
     image: u("photo-1574323347407-f5e1ad6d020b", 900),
-    fallback: "/images/variety-tj-1.svg",
   },
   {
     name: "K-6",
@@ -76,7 +70,6 @@ const varieties = [
     rating: 5,
     category: "high-yield",
     image: u("photo-1568051243851-cc6d922f0d7f", 900),
-    fallback: "/images/variety-k-6.svg",
   },
   {
     name: "Girnar-2",
@@ -86,7 +79,6 @@ const varieties = [
     rating: 4,
     category: "disease-resistant",
     image: u("photo-1605522037164-fa72a888fb98", 900),
-    fallback: "/images/variety-girnar-2.svg",
   },
   {
     name: "TAG-24",
@@ -96,7 +88,6 @@ const varieties = [
     rating: 5,
     category: "export",
     image: u("photo-1622957461168-202193e58b73", 900),
-    fallback: "/images/variety-tag-24.svg",
   },
 ];
 
@@ -239,12 +230,6 @@ export default function Home() {
                 src={HERO_IMAGE}
                 alt="Premium groundnut seeds — Kalyan Agro"
                 className="hero-image"
-                onError={(e) => {
-                  const img = e.currentTarget;
-                  if (!img.src.endsWith("/images/hero-peanut.svg")) {
-                    img.src = "/images/hero-peanut.svg";
-                  }
-                }}
               />
             </div>
             <div className="floating-card fc1">
@@ -389,16 +374,7 @@ export default function Home() {
                     {v.availability}
                   </span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={v.image}
-                    alt={`${v.name} groundnut variety`}
-                    onError={(e) => {
-                      const img = e.currentTarget;
-                      if (img.src !== window.location.origin + v.fallback) {
-                        img.src = v.fallback;
-                      }
-                    }}
-                  />
+                  <img src={v.image} alt={`${v.name} groundnut variety`} />
                 </div>
                 <div className="variety-body">
                   <div className="variety-tag">{v.tag}</div>
@@ -648,12 +624,6 @@ export default function Home() {
                 src={ABOUT_IMAGE}
                 alt="Kalyan Agro groundnut field"
                 className="about-bg-image"
-                onError={(e) => {
-                  const img = e.currentTarget;
-                  if (!img.src.endsWith("/images/about-field.svg")) {
-                    img.src = "/images/about-field.svg";
-                  }
-                }}
               />
               <div className="about-overlay"></div>
               <div className="about-stamp">

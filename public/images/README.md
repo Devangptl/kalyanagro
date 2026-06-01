@@ -1,13 +1,11 @@
-# Image Sources
+# Images
 
-The site now loads from **Unsplash CDN** by default. If any remote URL
-fails to resolve, the `<img onError>` handlers automatically swap to the
-local SVG fallback shipped in this folder. Both layers are independent —
-you can swap one without touching the other.
+All images on the site load from the **Unsplash CDN**, configured in
+`app/page.tsx`. No local fallbacks — if a remote URL fails, the
+`<img>` will show the browser's default broken-image icon, so make
+sure every URL resolves.
 
-## Live Unsplash URLs
-
-Defined in `app/page.tsx`:
+## Current photo IDs
 
 | Slot | Unsplash photo ID |
 |---|---|
@@ -20,31 +18,15 @@ Defined in `app/page.tsx`:
 | Girnar-2 | `photo-1605522037164-fa72a888fb98` |
 | TAG-24 | `photo-1622957461168-202193e58b73` |
 
-### Swap any photo
+## Swap any photo
 
-Open any photo on [unsplash.com](https://unsplash.com), copy the photo ID
-(the `photo-xxxx-yyyy` slug in the URL), then edit `app/page.tsx` and
-replace the ID inside the matching `u("photo-…", 900)` call.
+1. Find one you like on [unsplash.com](https://unsplash.com).
+2. Copy the slug from its URL — e.g. `photo-1567892737950-30c4db1fd4d2`.
+3. Open `app/page.tsx` and replace the slug inside the matching
+   `u("photo-…", 900)` call. The helper applies sensible defaults:
+   `?w=<width>&q=80&auto=format&fit=crop`.
 
-The helper applies sensible defaults: `?w=<width>&q=80&auto=format&fit=crop`.
+## Want local files instead?
 
-## Local SVG fallbacks
-
-The hand-crafted SVGs in this folder ship as fallbacks. Names:
-
-```
-hero-peanut.svg
-about-field.svg
-variety-bold.svg
-variety-java.svg
-variety-tj-1.svg
-variety-k-6.svg
-variety-girnar-2.svg
-variety-tag-24.svg
-```
-
-## Going fully offline
-
-If you'd rather not depend on Unsplash, replace the `u("photo-…")` value
-in `app/page.tsx` with a local path like `/images/variety-bold.jpg` and
-drop the file in this folder.
+Drop a `.jpg` / `.webp` into this folder and replace the `u("photo-…")`
+value with `/images/<your-file>.jpg` in `app/page.tsx`.
