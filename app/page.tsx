@@ -30,23 +30,117 @@ const UNSPLASH = "https://images.unsplash.com";
 const u = (id: string, w = 1200) =>
   `${UNSPLASH}/${id}?w=${w}&q=82&auto=format&fit=crop`;
 
+// Branded data-URI placeholder used as the final fallback if every remote
+// URL in the chain fails. Forest gradient + gold dot + "Kalyan Agro" mark.
+const PLACEHOLDER =
+  "data:image/svg+xml;charset=utf-8," +
+  encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#1f4530"/>
+          <stop offset="60%" stop-color="#102b1c"/>
+          <stop offset="100%" stop-color="#061811"/>
+        </linearGradient>
+        <radialGradient id="s" cx="78%" cy="22%" r="40%">
+          <stop offset="0%" stop-color="#e0a440" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#c98b1f" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="800" fill="url(#g)"/>
+      <rect width="1200" height="800" fill="url(#s)"/>
+      <g transform="translate(600 360)" text-anchor="middle">
+        <circle cx="0" cy="-60" r="12" fill="#c98b1f"/>
+        <text x="0" y="20" font-family="Georgia, serif" font-style="italic" font-size="56" fill="#faf4e7" font-weight="500">Kalyan Agro</text>
+        <text x="0" y="62" font-family="system-ui, sans-serif" font-size="16" fill="#faf4e7" opacity="0.55" letter-spacing="4">SOWING TRUST · GROWING TOMORROW</text>
+      </g>
+    </svg>`
+  );
+
+// Each slot has a primary URL and an ordered list of alternate URLs.
+// The chain is tried in order; the data-URI placeholder is appended
+// automatically inside <SmartImage>.
 const IMG = {
-  hero: u("photo-1567892737950-30c4db1fd4d2", 1600),
-  field: u("photo-1625246333195-78d9c38ad449", 1600),
-  process: u("photo-1574323347407-f5e1ad6d020b", 1400),
-  testimonial: u("photo-1542838132-92c53300491e", 1000),
-  bento1: u("photo-1500382017468-9049fed747ef", 900),
-  bento2: u("photo-1605522037164-fa72a888fb98", 900),
-  bento3: u("photo-1568051243851-cc6d922f0d7f", 900),
-  // Field Notes gallery
-  galleryLarge: u("photo-1464226184884-fa280b87c399", 1400),
-  galleryHarvest: u("photo-1466692476868-aef1dfb1e735", 900),
-  galleryLab: u("photo-1532187863486-abf9dbad1b69", 900),
-  galleryHands: u("photo-1530507629858-e3759c3da509", 900),
-  galleryPacking: u("photo-1492496913980-501348b61469", 900),
-  // Sell-side inset
-  sellInset: u("photo-1599909533730-4f3ad11ab8f4", 800),
+  hero: {
+    src: u("photo-1567892737950-30c4db1fd4d2", 1600),
+    alt: [u("photo-1606914469633-71deb6a83a0a", 1600), u("photo-1605522037164-fa72a888fb98", 1600)],
+  },
+  field: {
+    src: u("photo-1625246333195-78d9c38ad449", 1600),
+    alt: [u("photo-1500382017468-9049fed747ef", 1600), u("photo-1574323347407-f5e1ad6d020b", 1600)],
+  },
+  process: {
+    src: u("photo-1574323347407-f5e1ad6d020b", 1400),
+    alt: [u("photo-1532187863486-abf9dbad1b69", 1400), u("photo-1500382017468-9049fed747ef", 1400)],
+  },
+  testimonial: {
+    src: u("photo-1542838132-92c53300491e", 1000),
+    alt: [u("photo-1625246333195-78d9c38ad449", 1000), u("photo-1530507629858-e3759c3da509", 1000)],
+  },
+  bento1: {
+    src: u("photo-1500382017468-9049fed747ef", 900),
+    alt: [u("photo-1574323347407-f5e1ad6d020b", 900), u("photo-1625246333195-78d9c38ad449", 900)],
+  },
+  galleryLarge: {
+    src: u("photo-1464226184884-fa280b87c399", 1400),
+    alt: [u("photo-1500382017468-9049fed747ef", 1400), u("photo-1574323347407-f5e1ad6d020b", 1400)],
+  },
+  galleryHarvest: {
+    src: u("photo-1466692476868-aef1dfb1e735", 900),
+    alt: [u("photo-1605522037164-fa72a888fb98", 900), u("photo-1606914469633-71deb6a83a0a", 900)],
+  },
+  galleryLab: {
+    src: u("photo-1532187863486-abf9dbad1b69", 900),
+    alt: [u("photo-1574323347407-f5e1ad6d020b", 900), u("photo-1568051243851-cc6d922f0d7f", 900)],
+  },
+  galleryHands: {
+    src: u("photo-1530507629858-e3759c3da509", 900),
+    alt: [u("photo-1542838132-92c53300491e", 900), u("photo-1625246333195-78d9c38ad449", 900)],
+  },
+  galleryPacking: {
+    src: u("photo-1492496913980-501348b61469", 900),
+    alt: [u("photo-1599909533730-4f3ad11ab8f4", 900), u("photo-1568051243851-cc6d922f0d7f", 900)],
+  },
+  sellInset: {
+    src: u("photo-1599909533730-4f3ad11ab8f4", 800),
+    alt: [u("photo-1605522037164-fa72a888fb98", 800), u("photo-1606914469633-71deb6a83a0a", 800)],
+  },
 };
+
+type SmartImageProps = Omit<React.ImgHTMLAttributes<HTMLImageElement>, "src"> & {
+  src: string;
+  alt: string;
+  fallbacks?: string[];
+};
+
+function SmartImage({ src, fallbacks = [], alt, ...rest }: SmartImageProps) {
+  const sources = [src, ...fallbacks, PLACEHOLDER];
+  const [idx, setIdx] = useState(0);
+
+  // Reset when the primary src changes (e.g. variety filter)
+  useEffect(() => {
+    setIdx(0);
+  }, [src]);
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      {...rest}
+      src={sources[idx]}
+      alt={alt}
+      onError={() => {
+        if (idx < sources.length - 1) setIdx(idx + 1);
+      }}
+    />
+  );
+}
+
+// Generic peanut/groundnut fallback pool used by every variety card.
+const PEANUT_FALLBACKS = [
+  u("photo-1605522037164-fa72a888fb98", 900),
+  u("photo-1568051243851-cc6d922f0d7f", 900),
+  u("photo-1606914469633-71deb6a83a0a", 900),
+];
 
 const varieties = [
   {
@@ -295,8 +389,11 @@ export default function Home() {
 
           <div className="hero-visual reveal">
             <div className="hero-frame">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.hero} alt="Premium groundnut seeds" />
+              <SmartImage
+                src={IMG.hero.src}
+                fallbacks={IMG.hero.alt}
+                alt="Premium groundnut seeds"
+              />
               <div className="hero-frame-inner"></div>
             </div>
 
@@ -392,8 +489,11 @@ export default function Home() {
                 className={`variety-card reveal ${idx === 0 ? "feature" : ""}`}
               >
                 <div className="variety-image">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={v.image} alt={`${v.name} groundnut variety`} />
+                  <SmartImage
+                    src={v.image}
+                    fallbacks={PEANUT_FALLBACKS.filter((f) => f !== v.image)}
+                    alt={`${v.name} groundnut variety`}
+                  />
                   <span className="variety-badge">{v.badge}</span>
                   <button className="variety-peek" aria-label="Quick view">
                     <Plus size={16} stroke="#faf4e7" />
@@ -474,8 +574,11 @@ export default function Home() {
           <div className="bento-grid">
             <div className="bento-card bento-lg reveal">
               <div className="bento-img">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={IMG.bento1} alt="Farmer in groundnut field" />
+                <SmartImage
+                  src={IMG.bento1.src}
+                  fallbacks={IMG.bento1.alt}
+                  alt="Farmer in groundnut field"
+                />
               </div>
               <div className="bento-body">
                 <Shield size={26} />
@@ -542,8 +645,11 @@ export default function Home() {
 
           <div className="process-layout">
             <div className="process-image reveal">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.process} alt="Groundnut farming process" />
+              <SmartImage
+                src={IMG.process.src}
+                fallbacks={IMG.process.alt}
+                alt="Groundnut farming process"
+              />
               <div className="process-badge">
                 <strong>48hr</strong>
                 <span>average verification time</span>
@@ -596,8 +702,11 @@ export default function Home() {
               </p>
 
               <div className="sell-inset">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={IMG.sellInset} alt="Premium groundnut harvest" />
+                <SmartImage
+                  src={IMG.sellInset.src}
+                  fallbacks={IMG.sellInset.alt}
+                  alt="Premium groundnut harvest"
+                />
                 <div className="sell-inset-tag">
                   <strong>2,400+</strong>
                   <span>active seller partners</span>
@@ -684,8 +793,11 @@ export default function Home() {
         <div className="container">
           <div className="testimony-card reveal">
             <div className="testimony-media">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.testimonial} alt="Rameshbhai Patel — Kalyan Agro partner farmer" />
+              <SmartImage
+                src={IMG.testimonial.src}
+                fallbacks={IMG.testimonial.alt}
+                alt="Rameshbhai Patel — Kalyan Agro partner farmer"
+              />
             </div>
             <div className="testimony-body">
               <Quote size={42} />
@@ -727,8 +839,11 @@ export default function Home() {
 
           <div className="gallery-grid">
             <figure className="gallery-cell gallery-feature reveal">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.galleryLarge} alt="Golden hour over Junagadh groundnut fields" />
+              <SmartImage
+                src={IMG.galleryLarge.src}
+                fallbacks={IMG.galleryLarge.alt}
+                alt="Golden hour over Junagadh groundnut fields"
+              />
               <figcaption>
                 <span className="cap-kicker">No. 01 — Junagadh, Gujarat</span>
                 <span className="cap-title">Last light over the Bold harvest</span>
@@ -736,8 +851,11 @@ export default function Home() {
             </figure>
 
             <figure className="gallery-cell reveal">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.galleryHarvest} alt="Hand-sorted harvest" />
+              <SmartImage
+                src={IMG.galleryHarvest.src}
+                fallbacks={IMG.galleryHarvest.alt}
+                alt="Hand-sorted harvest"
+              />
               <figcaption>
                 <span className="cap-kicker">No. 02 — Anantapur</span>
                 <span className="cap-title">Hand-sorted, never machine-graded</span>
@@ -745,8 +863,11 @@ export default function Home() {
             </figure>
 
             <figure className="gallery-cell reveal">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.galleryLab} alt="Lab quality testing" />
+              <SmartImage
+                src={IMG.galleryLab.src}
+                fallbacks={IMG.galleryLab.alt}
+                alt="Lab quality testing"
+              />
               <figcaption>
                 <span className="cap-kicker">No. 03 — Prantij Lab</span>
                 <span className="cap-title">Seven-point quality verification</span>
@@ -754,8 +875,11 @@ export default function Home() {
             </figure>
 
             <figure className="gallery-cell reveal">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.galleryHands} alt="Farmer holding groundnut" />
+              <SmartImage
+                src={IMG.galleryHands.src}
+                fallbacks={IMG.galleryHands.alt}
+                alt="Farmer holding groundnut"
+              />
               <figcaption>
                 <span className="cap-kicker">No. 04 — Tumkur</span>
                 <span className="cap-title">Lakshmi Devi&apos;s third Girnar-2 season</span>
@@ -763,8 +887,11 @@ export default function Home() {
             </figure>
 
             <figure className="gallery-cell reveal">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.galleryPacking} alt="Packed for dispatch" />
+              <SmartImage
+                src={IMG.galleryPacking.src}
+                fallbacks={IMG.galleryPacking.alt}
+                alt="Packed for dispatch"
+              />
               <figcaption>
                 <span className="cap-kicker">No. 05 — Dispatch</span>
                 <span className="cap-title">Bagged, sealed, traceable</span>
@@ -779,8 +906,11 @@ export default function Home() {
         <div className="container">
           <div className="about-grid">
             <div className="about-media reveal">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.field} alt="Kalyan Agro farm in Prantij, Gujarat" />
+              <SmartImage
+                src={IMG.field.src}
+                fallbacks={IMG.field.alt}
+                alt="Kalyan Agro farm in Prantij, Gujarat"
+              />
               <div className="about-stamp">
                 <span>Est.</span>
                 <strong>2014</strong>
