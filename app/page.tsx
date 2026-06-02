@@ -57,53 +57,108 @@ const PLACEHOLDER =
     </svg>`
   );
 
-// Each slot has a primary URL and an ordered list of alternate URLs.
-// The chain is tried in order; the data-URI placeholder is appended
-// automatically inside <SmartImage>.
+// ─────────────────────────────────────────────────────────────
+// IMAGE CONFIG
+// Each slot has { src: primary, alt: [fallback URLs] }.
+// SmartImage tries them in order, then falls back to a branded
+// data-URI placeholder. Swap any Unsplash photo ID below to
+// change the picture in that slot.
+// ─────────────────────────────────────────────────────────────
 const IMG = {
+  // HERO — single hero peanut/groundnut shot in the arched frame
   hero: {
-    src: u("photo-1567892737950-30c4db1fd4d2", 1600),
-    alt: [u("photo-1606914469633-71deb6a83a0a", 1600), u("photo-1605522037164-fa72a888fb98", 1600)],
+    src: u("photo-1604908554049-d8e3bb39c91c", 1600),
+    alt: [
+      u("photo-1567892737950-30c4db1fd4d2", 1600),
+      u("photo-1606914469633-71deb6a83a0a", 1600),
+      u("photo-1605522037164-fa72a888fb98", 1600),
+    ],
   },
+  // ABOUT — Indian farm / golden-hour field
   field: {
-    src: u("photo-1625246333195-78d9c38ad449", 1600),
-    alt: [u("photo-1500382017468-9049fed747ef", 1600), u("photo-1574323347407-f5e1ad6d020b", 1600)],
+    src: u("photo-1523741543316-beb7fc7023d8", 1600),
+    alt: [
+      u("photo-1500382017468-9049fed747ef", 1600),
+      u("photo-1625246333195-78d9c38ad449", 1600),
+      u("photo-1574323347407-f5e1ad6d020b", 1600),
+    ],
   },
+  // PROCESS — lab / quality testing close-up
   process: {
-    src: u("photo-1574323347407-f5e1ad6d020b", 1400),
-    alt: [u("photo-1532187863486-abf9dbad1b69", 1400), u("photo-1500382017468-9049fed747ef", 1400)],
+    src: u("photo-1532187863486-abf9dbad1b69", 1400),
+    alt: [
+      u("photo-1582719471384-894fbb16e074", 1400),
+      u("photo-1574323347407-f5e1ad6d020b", 1400),
+      u("photo-1500382017468-9049fed747ef", 1400),
+    ],
   },
+  // TESTIMONIAL — farmer portrait / landscape
   testimonial: {
-    src: u("photo-1542838132-92c53300491e", 1000),
-    alt: [u("photo-1625246333195-78d9c38ad449", 1000), u("photo-1530507629858-e3759c3da509", 1000)],
+    src: u("photo-1469474968028-56623f02e42e", 1000),
+    alt: [
+      u("photo-1542838132-92c53300491e", 1000),
+      u("photo-1625246333195-78d9c38ad449", 1000),
+      u("photo-1530507629858-e3759c3da509", 1000),
+    ],
   },
+  // BENTO 1 — agricultural landscape inside the large bento card
   bento1: {
-    src: u("photo-1500382017468-9049fed747ef", 900),
-    alt: [u("photo-1574323347407-f5e1ad6d020b", 900), u("photo-1625246333195-78d9c38ad449", 900)],
+    src: u("photo-1465379944081-7f47de8d74ac", 900),
+    alt: [
+      u("photo-1500382017468-9049fed747ef", 900),
+      u("photo-1574323347407-f5e1ad6d020b", 900),
+      u("photo-1625246333195-78d9c38ad449", 900),
+    ],
   },
+  // GALLERY — Field Notes
   galleryLarge: {
-    src: u("photo-1464226184884-fa280b87c399", 1400),
-    alt: [u("photo-1500382017468-9049fed747ef", 1400), u("photo-1574323347407-f5e1ad6d020b", 1400)],
+    src: u("photo-1500382017468-9049fed747ef", 1400),
+    alt: [
+      u("photo-1469474968028-56623f02e42e", 1400),
+      u("photo-1464226184884-fa280b87c399", 1400),
+      u("photo-1518495973542-4542c06a5843", 1400),
+    ],
   },
   galleryHarvest: {
-    src: u("photo-1466692476868-aef1dfb1e735", 900),
-    alt: [u("photo-1605522037164-fa72a888fb98", 900), u("photo-1606914469633-71deb6a83a0a", 900)],
+    src: u("photo-1567892737950-30c4db1fd4d2", 900),
+    alt: [
+      u("photo-1466692476868-aef1dfb1e735", 900),
+      u("photo-1605522037164-fa72a888fb98", 900),
+      u("photo-1606914469633-71deb6a83a0a", 900),
+    ],
   },
   galleryLab: {
-    src: u("photo-1532187863486-abf9dbad1b69", 900),
-    alt: [u("photo-1574323347407-f5e1ad6d020b", 900), u("photo-1568051243851-cc6d922f0d7f", 900)],
+    src: u("photo-1582719471384-894fbb16e074", 900),
+    alt: [
+      u("photo-1532187863486-abf9dbad1b69", 900),
+      u("photo-1574323347407-f5e1ad6d020b", 900),
+      u("photo-1568051243851-cc6d922f0d7f", 900),
+    ],
   },
   galleryHands: {
-    src: u("photo-1530507629858-e3759c3da509", 900),
-    alt: [u("photo-1542838132-92c53300491e", 900), u("photo-1625246333195-78d9c38ad449", 900)],
+    src: u("photo-1517022812141-23620dba5c23", 900),
+    alt: [
+      u("photo-1530507629858-e3759c3da509", 900),
+      u("photo-1542838132-92c53300491e", 900),
+      u("photo-1625246333195-78d9c38ad449", 900),
+    ],
   },
   galleryPacking: {
-    src: u("photo-1492496913980-501348b61469", 900),
-    alt: [u("photo-1599909533730-4f3ad11ab8f4", 900), u("photo-1568051243851-cc6d922f0d7f", 900)],
+    src: u("photo-1542838132-92c53300491e", 900),
+    alt: [
+      u("photo-1492496913980-501348b61469", 900),
+      u("photo-1599909533730-4f3ad11ab8f4", 900),
+      u("photo-1568051243851-cc6d922f0d7f", 900),
+    ],
   },
+  // SELL INSET — small image card on the sell-with-us side
   sellInset: {
-    src: u("photo-1599909533730-4f3ad11ab8f4", 800),
-    alt: [u("photo-1605522037164-fa72a888fb98", 800), u("photo-1606914469633-71deb6a83a0a", 800)],
+    src: u("photo-1568051243851-cc6d922f0d7f", 800),
+    alt: [
+      u("photo-1599909533730-4f3ad11ab8f4", 800),
+      u("photo-1605522037164-fa72a888fb98", 800),
+      u("photo-1606914469633-71deb6a83a0a", 800),
+    ],
   },
 };
 
@@ -137,9 +192,10 @@ function SmartImage({ src, fallbacks = [], alt, ...rest }: SmartImageProps) {
 
 // Generic peanut/groundnut fallback pool used by every variety card.
 const PEANUT_FALLBACKS = [
+  u("photo-1567892737950-30c4db1fd4d2", 900),
+  u("photo-1606914469633-71deb6a83a0a", 900),
   u("photo-1605522037164-fa72a888fb98", 900),
   u("photo-1568051243851-cc6d922f0d7f", 900),
-  u("photo-1606914469633-71deb6a83a0a", 900),
 ];
 
 const varieties = [
@@ -150,7 +206,7 @@ const varieties = [
     badge: "Bestseller",
     rating: 4.9,
     category: "high-yield",
-    image: u("photo-1606914469633-71deb6a83a0a", 900),
+    image: u("photo-1622957461168-202193e58b73", 900),
     note: "Plump, large kernels with the highest oil content. Ideal for confectionery and oil extraction.",
   },
   {
@@ -160,7 +216,7 @@ const varieties = [
     badge: "Heritage",
     rating: 4.8,
     category: "export",
-    image: u("photo-1599909533730-4f3ad11ab8f4", 900),
+    image: u("photo-1606914469633-71deb6a83a0a", 900),
     note: "Traditional small-kernel variety, deep flavor profile. Preferred for snack and trade markets.",
   },
   {
@@ -170,7 +226,7 @@ const varieties = [
     badge: "Disease Resistant",
     rating: 4.9,
     category: "disease-resistant",
-    image: u("photo-1574323347407-f5e1ad6d020b", 900),
+    image: u("photo-1605522037164-fa72a888fb98", 900),
     note: "Engineered for resistance against leaf spot and rust. Backed by lab-verified germination rates.",
   },
   {
@@ -180,7 +236,7 @@ const varieties = [
     badge: "Top Yield",
     rating: 4.7,
     category: "high-yield",
-    image: u("photo-1568051243851-cc6d922f0d7f", 900),
+    image: u("photo-1599909533730-4f3ad11ab8f4", 900),
     note: "Short-duration crop with proven 2.8 tn/ha returns under rainfed conditions across Andhra.",
   },
   {
@@ -190,7 +246,7 @@ const varieties = [
     badge: "Climate Smart",
     rating: 4.8,
     category: "disease-resistant",
-    image: u("photo-1605522037164-fa72a888fb98", 900),
+    image: u("photo-1568051243851-cc6d922f0d7f", 900),
     note: "Bred in Junagadh. Holds yield even under stress moisture conditions and warmer growing months.",
   },
   {
@@ -200,7 +256,7 @@ const varieties = [
     badge: "Export Grade",
     rating: 5.0,
     category: "export",
-    image: u("photo-1622957461168-202193e58b73", 900),
+    image: u("photo-1567892737950-30c4db1fd4d2", 900),
     note: "Uniform pod size, low aflatoxin, high oleic acid. Trusted by international buyers in 12 countries.",
   },
 ];
