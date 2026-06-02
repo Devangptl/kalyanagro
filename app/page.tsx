@@ -38,6 +38,14 @@ const IMG = {
   bento1: u("photo-1500382017468-9049fed747ef", 900),
   bento2: u("photo-1605522037164-fa72a888fb98", 900),
   bento3: u("photo-1568051243851-cc6d922f0d7f", 900),
+  // Field Notes gallery
+  galleryLarge: u("photo-1464226184884-fa280b87c399", 1400),
+  galleryHarvest: u("photo-1466692476868-aef1dfb1e735", 900),
+  galleryLab: u("photo-1532187863486-abf9dbad1b69", 900),
+  galleryHands: u("photo-1530507629858-e3759c3da509", 900),
+  galleryPacking: u("photo-1492496913980-501348b61469", 900),
+  // Sell-side inset
+  sellInset: u("photo-1599909533730-4f3ad11ab8f4", 800),
 };
 
 const varieties = [
@@ -587,6 +595,15 @@ export default function Home() {
                 out within 24 hours with a fair, transparent quote.
               </p>
 
+              <div className="sell-inset">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={IMG.sellInset} alt="Premium groundnut harvest" />
+                <div className="sell-inset-tag">
+                  <strong>2,400+</strong>
+                  <span>active seller partners</span>
+                </div>
+              </div>
+
               <ul className="sell-benefits">
                 <li><span><Check size={14} stroke="#102b1c" /></span> <div><strong>Fast settlement</strong> — payments cleared within 7 days of delivery.</div></li>
                 <li><span><Check size={14} stroke="#102b1c" /></span> <div><strong>Pan-India buyer access</strong> — your harvest meets 50,000+ verified traders.</div></li>
@@ -692,6 +709,71 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== FIELD NOTES GALLERY ===== */}
+      <section className="gallery" id="field-notes">
+        <div className="container">
+          <div className="section-head reveal">
+            <div>
+              <span className="section-num">06 · Field Notes</span>
+              <h2 className="display">
+                Glimpses from <em>our season.</em>
+              </h2>
+            </div>
+            <p className="section-aside">
+              A small archive of moments from the farms, the lab, and the
+              processing floor — a window into the work behind every bag.
+            </p>
+          </div>
+
+          <div className="gallery-grid">
+            <figure className="gallery-cell gallery-feature reveal">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.galleryLarge} alt="Golden hour over Junagadh groundnut fields" />
+              <figcaption>
+                <span className="cap-kicker">No. 01 — Junagadh, Gujarat</span>
+                <span className="cap-title">Last light over the Bold harvest</span>
+              </figcaption>
+            </figure>
+
+            <figure className="gallery-cell reveal">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.galleryHarvest} alt="Hand-sorted harvest" />
+              <figcaption>
+                <span className="cap-kicker">No. 02 — Anantapur</span>
+                <span className="cap-title">Hand-sorted, never machine-graded</span>
+              </figcaption>
+            </figure>
+
+            <figure className="gallery-cell reveal">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.galleryLab} alt="Lab quality testing" />
+              <figcaption>
+                <span className="cap-kicker">No. 03 — Prantij Lab</span>
+                <span className="cap-title">Seven-point quality verification</span>
+              </figcaption>
+            </figure>
+
+            <figure className="gallery-cell reveal">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.galleryHands} alt="Farmer holding groundnut" />
+              <figcaption>
+                <span className="cap-kicker">No. 04 — Tumkur</span>
+                <span className="cap-title">Lakshmi Devi&apos;s third Girnar-2 season</span>
+              </figcaption>
+            </figure>
+
+            <figure className="gallery-cell reveal">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.galleryPacking} alt="Packed for dispatch" />
+              <figcaption>
+                <span className="cap-kicker">No. 05 — Dispatch</span>
+                <span className="cap-title">Bagged, sealed, traceable</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       {/* ===== ABOUT EDITORIAL ===== */}
       <section className="about" id="about">
         <div className="container">
@@ -707,7 +789,7 @@ export default function Home() {
             </div>
 
             <div className="about-content reveal">
-              <span className="section-num">06 · About</span>
+              <span className="section-num">07 · About</span>
               <h2 className="display">
                 Rooted in <em>Gujarat&apos;s</em> soil.<br />
                 Growing across India.
@@ -747,7 +829,7 @@ export default function Home() {
       <section className="faq" id="faq">
         <div className="container faq-grid">
           <div className="faq-head reveal">
-            <span className="section-num">07 · Questions</span>
+            <span className="section-num">08 · Questions</span>
             <h2 className="display">
               Honest answers,<br />
               <em>before you commit.</em>
@@ -785,7 +867,7 @@ export default function Home() {
         <div className="container">
           <div className="newsletter-card reveal">
             <div className="newsletter-text">
-              <span className="section-num light">08 · Stay in touch</span>
+              <span className="section-num light">09 · Stay in touch</span>
               <h2 className="display light">
                 Mandi rates, harvest reports,<br />
                 <em>and seasonal alerts.</em>
