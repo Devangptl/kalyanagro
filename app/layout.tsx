@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -27,6 +27,13 @@ export const metadata: Metadata = {
     "Indian Agriculture",
     "Buy Seeds Online",
   ],
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#102b1c",
 };
 
 export default function RootLayout({
